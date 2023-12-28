@@ -7,4 +7,8 @@ game by the end of this project. Lets get to coding!
 I have since added a paddles a ball and a scoring system of sorts. I have handled the event 
 when the ball hits either wall on the side and ends the game.
 
-https://github.com/josiah-mbao/Pong-Game/assets/79065770/8f34a9ec-5be1-4b45-8406-d74931ed2a08
+
+
+https://github.com/josiah-mbao/Pong-Game/assets/79065770/f3f16669-c86c-4ad1-b03a-cf678b3030f9
+
+
