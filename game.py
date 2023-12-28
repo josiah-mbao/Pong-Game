@@ -4,7 +4,7 @@ pygame.init()
 size = width, height = 920, 720
 screen = pygame.display.set_mode(size)
 black = 0, 0, 0
-ball_speed = [5, 0]  # Adjust the initial speed as needed
+ball_speed = [3, 1]  # Adjust the initial speed as needed
 ball_position = [width // 2, height // 2]
 clock = pygame.time.Clock()
 
@@ -13,13 +13,13 @@ paddle2_prev_y = paddle2.y
 paddle1 = pygame.Rect(width-50, 5, 10, 80)
 paddle1_prev_y = paddle1.y
 
-paddle_speed = 15
+paddle_speed = 10
 
 font = pygame.font.Font(None, 46)
 cred_font = pygame.font.Font(None, 26)
 text_color = (0, 100, 0)
 score = 0
-
+radius = 10
 running = True  # Control variable for the game loop
 
 while running:
@@ -60,9 +60,11 @@ while running:
     if paddle1.colliderect(pygame.Rect(ball_position[0]-10, ball_position[1]-10, 20, 20)) or \
        paddle2.colliderect(pygame.Rect(ball_position[0]-10, ball_position[1]-10, 20, 20)):
         score += 1
-        ball_speed[1] += (paddle1.y - paddle1_prev_y) / 25  # Experiment with the scaling factor
-        ball_speed[1] += (paddle2.y - paddle2_prev_y) / 25
-        ball_speed[0] = -ball_speed[0]
+        ball_speed[0] = -ball_speed[0]  # Reverse the horizontal direction
+
+        # Calculate the new vertical speed based on the position relative to the center of the paddle
+        relative_position = (paddle1.centery - ball_position[1]) if ball_speed[0] > 0 else (paddle2.centery - ball_position[1])
+        ball_speed[1] = relative_position / 100  # Experiment with the scaling factor
 
     # Check if the game is over
     if ball_position[0] <= 0 or ball_position[0] >= width and score > 1:
@@ -87,7 +89,7 @@ while running:
     pygame.draw.rect(screen, (255, 255, 255), paddle2)
 
     # Draw the ball
-    pygame.draw.circle(screen, (200, 200, 200), (int(ball_position[0]), int(ball_position[1])), 10)
+    pygame.draw.circle(screen, (200, 200, 200), (int(ball_position[0]), int(ball_position[1])), radius)
     pygame.draw.line(screen, (255, 255, 255), ((width / 2), 0), ((width / 2), height))
 
     # Render text
