@@ -85,8 +85,8 @@ while running:
     paddle2_prev_y = paddle2.y
 
     screen.fill(black)
-    pygame.draw.rect(screen, (215, 255, 255), paddle1)
-    pygame.draw.rect(screen, (255, 255, 255), paddle2)
+    pygame.draw.rect(screen, (0, 0, 255), paddle1)
+    pygame.draw.rect(screen, (200, 0, 0), paddle2)
 
     # Draw the ball
     pygame.draw.circle(screen, (200, 200, 200), (int(ball_position[0]), int(ball_position[1])), radius)
